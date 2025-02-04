@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +6,7 @@
         <title>Review</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static "reviews/index.css"%}">
     </head>
     <body>
         <form action="/" method="POST">
@@ -15,8 +16,14 @@
             {% endif %}
             <label for="username">Your name</label>
             <input id="username" name="username" type="text"> {% endcomment %}
-            {{ form }}
-            <button>Send</button>
+
+            <!-- LA CLASSE errors NEL CSS VIENE ATTIVATA SOLO SE form.username_form HA ERRORI-->
+            <div class="form-control {% if form.username_form.errors %} errors {% endif %}">
+                {{ form.username_form.label_tag }}
+                {{ form.username_form }}
+                {{ form.username_form.errors }}
+            </div>
+            <button type="submit">Send</button>
         </form>
     </body>
 </html>
