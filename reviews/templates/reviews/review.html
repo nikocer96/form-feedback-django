@@ -17,12 +17,28 @@
             <label for="username">Your name</label>
             <input id="username" name="username" type="text"> {% endcomment %}
 
+            {% for field in form %}
+                <div class="form-control {% if field.errors %} errors {% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors}}
+                </div>
+            {% endfor %}
             <!-- LA CLASSE errors NEL CSS VIENE ATTIVATA SOLO SE form.username_form HA ERRORI-->
-            <div class="form-control {% if form.username_form.errors %} errors {% endif %}">
+            <!-- <div class="form-control {% if form.username_form.errors %} errors {% endif %}">
                 {{ form.username_form.label_tag }}
                 {{ form.username_form }}
                 {{ form.username_form.errors }}
-            </div>
+            <div class="form-control {% if form.review_text.errors %} errors {% endif %}">
+                {{ form.review_text.label_tag }}
+                {{ form.review_text }}
+                {{ form.review_text.errors }}
+            <div class="form-control {% if form.rating.errors %} errors {% endif %}">
+                {{ form.rating.label_tag }}
+                {{ form.rating }}
+                {{ form.rating.errors}}
+            </div> -->
+            
             <button type="submit">Send</button>
         </form>
     </body>
