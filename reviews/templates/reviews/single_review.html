@@ -7,4 +7,12 @@
     <p>Rating: {{ review.rating }}</p>
     <p>Review: {{ review.review_text }}</p>
 
+    <div>
+        <!-- Form di eliminazione -->
+        <form action="{% url 'review_delete' review.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Elimina Recensione</button>
+        </form>
+    </div>
+
 {% endblock %}

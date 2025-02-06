@@ -5,7 +5,8 @@ from .models import Review
 from django.views import View
 from django.views.generic.base import TemplateView # E' PIU' SPECIFICA
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView, DeleteView
+from django.urls import reverse
 
 # Create your views here.
 
@@ -16,17 +17,8 @@ from django.views.generic.edit import FormView
 #         return render(request, "reviews/review.html", {
 #             "form": form
 #         })
-        
-class ReviewView(FormView):
-    form_class = ReviewForm
-    template_name = "reviews/review.html"
-    success_url = "thank-you"
-    
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-        
-    # def post(self, request):
+
+#      def post(self, request):
     #     form = ReviewForm(request.POST)
     #     if form.is_valid():
     #         form.save()
@@ -34,6 +26,31 @@ class ReviewView(FormView):
     #     return render(request, "reviews/review.html", {
     #         "form": form
     #     })
+        
+# class ReviewView(FormView):
+#     form_class = ReviewForm
+#     template_name = "reviews/review.html"
+#     success_url = "thank-you"
+    
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
+        
+
+# CREATEVIEW SALVA DIRETTAMENTE I DATI NEL DB
+class ReviewView(CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = "reviews/review.html"
+    success_url = "thank-you"
+    
+class ReviewDelete(DeleteView):
+    model = Review
+    template_name = "reviews/review_list.html"
+    
+    def get_success_url(self):
+        return reverse('review_list')  
+        
 # -------------------------
                 
 # def review(request):
