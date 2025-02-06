@@ -4,5 +4,7 @@ from . import views
 urlpatterns = [
     path("", views.ReviewView.as_view()),
     path("thank-you", views.ThankYou.as_view()),
-    path("reviews", views.ReviewsListView.as_view())
+    path("reviews", views.ReviewsListView.as_view()),
+    # VA pk SE STIAMO USANDO DetailView
+    path("reviews/<int:pk>", views.SingleReviewView.as_view(), name="review_single")
 ]

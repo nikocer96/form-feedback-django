@@ -4,8 +4,11 @@
 
 {% block content %}
     <ul>
+        <!-- SE USO ListView IN views.py, NEL FOR VA object_list 
+            OPPURE AGGIUNGERE IN views.py context_object_name= IL NOME CHE SI VUOLE
+        -->
         {% for review in reviews %}
-            <li>{{ review.username_form }} (Rating: {{ review.rating }})</li>
+            <a href="{% url "review_single" review.id %}"><li>{{ review.username_form }} (Rating: {{ review.rating }})</li></a>
         {% endfor %}
     </ul>
 {% endblock %}
