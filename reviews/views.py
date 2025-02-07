@@ -42,7 +42,7 @@ class ReviewView(CreateView):
     model = Review
     form_class = ReviewForm
     template_name = "reviews/review.html"
-    success_url = "thank-you"
+    success_url = "reviews"
     
 class ReviewDelete(DeleteView):
     model = Review

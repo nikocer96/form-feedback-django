@@ -1,17 +1,11 @@
 {% extends "reviews/base.html" %}
 
-{% block title %} Single Review {% endblock %}
+{% block title %} Remove Review {% endblock %}
 
 {% block content %}
-    <h1>{{ review.username_form }}</h1>
-    <p>Rating: {{ review.rating }}</p>
-    <p>Review: {{ review.review_text }}</p>
-
-    {% include "reviews/remove_reviews.html" %}
-    
-    {% comment %} <div>
+    <div>
         <!-- Form di eliminazione -->
-       <button id="openModalButton">Elimina</button>
+    <button id="openModalButton">Elimina</button>
     </div>
     <div id="deleteModal" class="modal">
         <div class="modalContent">
@@ -33,7 +27,5 @@
         document.getElementById('closeModalButton').addEventListener('click', function() {
             document.getElementById('deleteModal').style.display = 'none';
         });
-    </script>  {% endcomment %}
-
-
+    </script>
 {% endblock %}
