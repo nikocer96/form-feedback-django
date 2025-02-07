@@ -47,9 +47,9 @@ class ReviewView(CreateView):
 class ReviewDelete(DeleteView):
     model = Review
     template_name = "reviews/review_list.html"
-    
-    def get_success_url(self):
-        return reverse('review_list')  
+    success_url = "/reviews"
+    # def get_success_url(self):
+    #     return reverse('review_list')  
         
 # -------------------------
                 
