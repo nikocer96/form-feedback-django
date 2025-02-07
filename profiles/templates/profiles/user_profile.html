@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>User Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <ul>
+            {% for profile in profiles %}
+                {% comment %} <img src="{{ profile.image.url }}"> {% endcomment %}
+                <li>
+                    <button onclick="apriImmagine('image{{ forloop.counter }}', 'download{{ forloop.counter }}')">{{ profile.image.name }}</button>
+                    <img id="image{{ forloop.counter }}" src="{{ profile.image.url }}" style="display:none;">
+                    <a id="download{{ forloop.counter }}" href="{{ profile.image.url }}" download="{{ profile.image.id }}" style="display:none;">Scarica immagine</a>
+
+                    
+                </li>
+            {% endfor %}
+        </ul>
+
+        <script>
+            function apriImmagine(imageId, downloadId) {
+                var img = document.getElementById(imageId);
+                var downloadLink = document.getElementById(downloadId)
+                if (img.style.display === "none") {
+                    img.style.display = "block";  // Mostra l'immagine
+                    downloadLink.style.display = "inline"
+                } else {
+                    img.style.display = "none";   // Nasconde l'immagine
+                    downloadLink.style.display = "none"
+                }
+            }
+        </script>
+    </body>
+</html>
