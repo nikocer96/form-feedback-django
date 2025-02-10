@@ -129,4 +129,20 @@ class SingleReviewView(DetailView):
     # NELL'HTML PRENDO I DATI SCRIVENDO review IN MINUSCOLO OPPURE USO object NELL'HTML
     model = Review
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        loaded_review = self.object # RECENSIONE CARICATA
+        print(loaded_review)
+        request = self.request
+        print(request)
+        favorite_id = request.session.get("favorite_review") # ID MEMORIZZATO IN SESSIONE
+        context["is_favorite"] = favorite_id == str(loaded_review.id)
+        return context 
+    
 #------------------------------
+
+class AddFavoriteView(View):
+     def post(self, request):
+         review_id = request.POST["review_id"]
+         request.session["favorite_review"] = review_id
+         return HttpResponseRedirect("/reviews/" + review_id)
